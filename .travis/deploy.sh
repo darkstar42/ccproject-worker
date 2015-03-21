@@ -4,7 +4,7 @@ if [[ $TRAVIS_BRANCH == 'production' ]]; then
     rm -Rf /tmp/deploy
     mkdir -p /tmp/deploy/opt/ccproject-worker
     cp -pR ./* /tmp/deploy/opt/ccproject-worker
-    mkdir -p /tmp/deploy/opt/etc/init.d/
+    mkdir -p /tmp/deploy/etc/init.d/
     cp .travis/ccproject-worker /tmp/deploy/etc/init.d/ccproject-worker
     chmod +x /tmp/deploy/etc/init.d/ccproject-worker
     rm -f *.deb

@@ -1,5 +1,11 @@
 {
   "App": {
     "Name": "ccproject-worker"
+  },
+
+  "AWS": {
+    "SQS": {
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/260150743080/CCStoreJobs"
+    }
   }
 }

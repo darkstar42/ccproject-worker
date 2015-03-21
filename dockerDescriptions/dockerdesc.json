@@ -1,0 +1,42 @@
+{
+  "templates": {
+    "run": {
+      "default": {
+        "options": {
+          "tty": "true",
+          "detach": "true",
+          "interactive": "true"
+        }
+      },
+      "attached": {
+        "options": {
+          "detach": "false",
+          "interactive": "false"
+        }
+      }
+    }
+  },
+  "build": {
+    "ffmpeg": {
+      "path": "ffmpeg",
+      "options": {
+        "tag": "ffmpeg"
+      }
+    }
+  },
+  "run": {
+    "ffmpeg": {
+      "image": "ffmpeg",
+      "templates": "attached",
+      "options": {
+        "rm": true,
+        "volume": "/tmp:/download"
+      },
+      "command": [
+        "/bin/bash",
+        "-c",
+        "ffmpeg -i BigBuckBunny_320x180.mp4 BigBuckBunny_320x180.mp3"
+      ]
+    }
+  }
+}

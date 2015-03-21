@@ -1,0 +1,17 @@
+{
+  "name": "ccproject-worker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app",
+    "test": "make test"
+  },
+
+  "dependencies": {
+    "nconf": "0.7.1",
+    "aws-sdk": "2.1.16"
+  },
+
+  "devDependencies": {
+  }
+}

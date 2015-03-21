@@ -9,7 +9,8 @@
 
   "dependencies": {
     "nconf": "0.7.1",
-    "aws-sdk": "2.1.16"
+    "aws-sdk": "2.1.16",
+    "docker-cmd": "0.2.2"
   },
 
   "devDependencies": {

@@ -44,12 +44,7 @@ var notificationService = require(appRoot + '/services/notification')();
 var worker = function() {
     console.log('Start worker...');
 
-    var notification = notificationService.createNotification('foo', 'Worker started...');
-    notificationService.saveNotification(notification, function(err) {
-        console.dir(err);
-
-        receiveMessage(handleMessage);
-    });
+    receiveMessage(handleMessage);
 };
 
 function runCmd(image, command, entryId, folderId) {
@@ -113,18 +108,12 @@ function runCmd(image, command, entryId, folderId) {
                     fs.rmrfSync(workDir);
                     console.log('job run and finished.');
 
-                    receiveMessage(handleMessage);
+                    var notification = notificationService.createNotification('foo', 'Job finished - ' + image + ': ' + command);
+                    notificationService.saveNotification(notification, function(err) {
+                        receiveMessage(handleMessage);
+                    });
                 });
             });
-
-            /*
-             dockerCmdManager.run('ffmpeg', function(dockerRunExitCode) {
-             console.dir(dockerRunExitCode);
-             console.log('ffmpeg run and finished.');
-
-             var dockerCmd = new DockerCmd();
-             });
-             */
         });
     };
 
@@ -132,7 +121,10 @@ function runCmd(image, command, entryId, folderId) {
         if (err) {
             console.error(err);
         } else {
-            fileService.getFile(entryId, getFileCallback);
+            var notification = notificationService.createNotification('foo', 'Execute ' + image + ': ' + command);
+            notificationService.saveNotification(notification, function(err) {
+                fileService.getFile(entryId, getFileCallback);
+            });
         }
     });
 }

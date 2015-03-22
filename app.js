@@ -36,6 +36,7 @@ var sqs = new aws.SQS();
 var dockerCmdManager = new DockerCmdManager(appRoot + '/dockerDescriptions/dockerdesc.json');
 
 var fileService = require(appRoot + '/services/file')();
+var notificationService = require(appRoot + '/services/notification')();
 
 /**
  * Server
@@ -43,7 +44,12 @@ var fileService = require(appRoot + '/services/file')();
 var worker = function() {
     console.log('Start worker...');
 
-    receiveMessage(handleMessage);
+    var notification = notificationService.createNotification('foo', 'Worker started...');
+    notificationService.saveNotification(notification, function(err) {
+        console.dir(err);
+
+        receiveMessage(handleMessage);
+    });
 };
 
 function runCmd(image, command, entryId, folderId) {

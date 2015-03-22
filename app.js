@@ -19,6 +19,8 @@ var DockerCmdManager = require('docker-cmd').Manager;
 var DockerCmd = require("docker-cmd");
 var dockerCmd = new DockerCmd();
 
+global.appRoot = path.resolve(__dirname);
+
 var conf = require('nconf')
     .file({ file: path.join(__dirname, 'config', 'global.json') })
     .file('aws', { file: path.join(__dirname, 'config', 'aws.json') });
@@ -31,9 +33,9 @@ aws.config.update({
 
 var sqs = new aws.SQS();
 
-var dockerCmdManager = new DockerCmdManager('./dockerDescriptions/dockerdesc.json');
+var dockerCmdManager = new DockerCmdManager(appRoot + '/dockerDescriptions/dockerdesc.json');
 
-var fileService = require('./services/file')();
+var fileService = require(appRoot + '/services/file')();
 
 /**
  * Server

@@ -60,8 +60,8 @@ function runCmd(image, command, entryId, folderId) {
     };
 
     var downloadFileCallback = function() {
-        dockerCmdManager.build('ffmpeg', function(dockerBuildExitCode) {
-            console.log('ffmpeg built');
+        dockerCmdManager.build(image, function(dockerBuildExitCode) {
+            console.log(image + ' built');
             console.dir(dockerBuildExitCode);
 
             dockerCmd.run({

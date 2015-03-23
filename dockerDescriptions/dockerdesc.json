@@ -22,6 +22,12 @@
       "options": {
         "tag": "ffmpeg"
       }
+    },
+    "latex": {
+      "path": "latex",
+      "options": {
+        "tag": "latex"
+      }
     }
   },
   "run": {

@@ -80,7 +80,7 @@ function runCmd(image, command, entryId, folderId) {
                 var walker = walk.walk(workDir);
 
                 walker.on("file", function (root, fileStats, next) {
-                    if (fileStats.name === entryId) {
+                    if (fileStats.name === entryId || fileStats.size === 0) {
                         next();
                     } else {
                         var filepath = workDir + '/' + fileStats.name;
